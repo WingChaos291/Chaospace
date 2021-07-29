@@ -304,7 +304,7 @@ html {
 }
 html,
 body {
-  font-family: Souce Han Sans CN;
+  font-family: Souce Han Sans CN,sans-serif;
 }
 html,
 body,
@@ -937,7 +937,7 @@ img[lazyload] {
 .markdown-body {
   font-size: 1rem;
   margin-bottom: 2rem;
-  font-family: Souce Han Sans CN;
+  font-family: Souce Han Sans CN,sans-serif;
   color: var(--post-text-color);
 }
 .markdown-body h1,
