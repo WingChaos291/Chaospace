@@ -180,7 +180,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.3k 字
     </span>
   
 
@@ -190,7 +190,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24
+      25
        分钟
     </span>
   
@@ -251,11 +251,12 @@
 
 <h3 id="一、了解打卡过程"><a href="#一、了解打卡过程" class="headerlink" title="一、了解打卡过程"></a>一、了解打卡过程</h3><p>​        打卡这一操作无非就是向服务器发送数据，要<del>截获</del>(获取，并未劫持)数据我们需要用到<a target="_blank" rel="noopener" href="https://www.telerik.com/download/fiddler/fiddler4">Fiddler4</a>，这一过程称作<code>抓包</code></p>
 <p>你可以理解为<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1kW411c7Qm">窃听有线通话</a>的操作@罗兹</p>
-<p><a href="#hsiaofeng">筱枫的抓包结果</a></p>
+<p><a href="#hsiaofeng">筱枫的抓包结果</a>  </p>
+<p><strong>（由于系统做出部分调整，所有代码已于8月9日更新）</strong></p>
 <h3 id="二、模拟打卡操作"><a href="#二、模拟打卡操作" class="headerlink" title="二、模拟打卡操作"></a>二、模拟打卡操作</h3><p>​        在进行操作前，你应该对HTTP的几种请求方式有些许了解，这里我们用到了POST向服务器提交数据。</p>
 <p>​        在新版的Tasker里，HTTP POST等操作被整合进了<code>HTTP Request</code>。</p>
 <p><strong>URL</strong></p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">https://smart.▇▇▇▇.edu.cn/v1/accounts/login/<br></code></pre></td></tr></table></figure>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">https://apii.▇▇▇▇.edu.cn/v1/accounts/login/<br></code></pre></td></tr></table></figure>
 
 <p><strong>头部</strong></p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/json; charset=utf-8 <br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate, br <br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>keep-alive <br><span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>application/json<br></code></pre></td></tr></table></figure>
@@ -291,13 +292,13 @@
 <img alt="" src="/img/Tasker-HttpRequest/doc.jpg" srcset="/img/loading.gif" lazyload width=50%>
 
 <h4 id="开始模拟打卡，新建晨报打卡任务，依然选择HTTP-Request"><a href="#开始模拟打卡，新建晨报打卡任务，依然选择HTTP-Request" class="headerlink" title="开始模拟打卡，新建晨报打卡任务，依然选择HTTP Request"></a>开始模拟打卡，新建晨报打卡任务，依然选择HTTP Request</h4><p><strong>URL</strong></p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">https://smart.▇▇▇▇.edu.cn/v1/temperatures/<br></code></pre></td></tr></table></figure>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">https://apii.▇▇▇▇.edu.cn/v1/temperatures/<br></code></pre></td></tr></table></figure>
 
 <p><strong>头部</strong></p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-attribute">Authorization</span><span class="hljs-punctuation">: </span>JWT 粘贴你的token<br></code></pre></td></tr></table></figure>
 
 <p><strong>主体</strong></p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs http">&#123;<br>    &quot;value&quot;: &quot;36&quot;,<br>    &quot;condition&quot;: &quot;A&quot;,<br>    &quot;home_condition&quot;: &quot;A&quot;,<br>    &quot;watched&quot;: false,<br>    &quot;watched_location&quot;: &quot;&quot;,<br>    &quot;stayed&quot;: false,<br>    &quot;stayed_contacted&quot;: false,<br>    &quot;family_conditions&quot;: &quot;&quot;,<br>    &quot;is_contacted&quot;: false,<br>    &quot;contacted_health&quot;: &quot;&quot;,<br>    &quot;personid&quot;: &quot;&quot;,<br>    &quot;notes&quot;: &quot;&quot;,<br>    &quot;location&quot;: &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs http">&#123;<br>    &quot;code_color&quot;: &quot;A&quot;,<br>    &quot;condition&quot;: &quot;A&quot;,<br>    &quot;contacted_health&quot;: &quot;&quot;,<br>    &quot;family_conditions&quot;: &quot;&quot;,<br>    &quot;high_risk_status&quot;: &quot;A&quot;,<br>    &quot;home_condition&quot;: &quot;A&quot;,<br>    &quot;is_contacted&quot;: false,<br>    &quot;stayed&quot;: false,<br>    &quot;stayed_contacted&quot;: false,<br>    &quot;submitted_to_haedu&quot;: false,<br>    &quot;vaccine_status&quot;: &quot;A&quot;,<br>    &quot;value&quot;: &quot;36.0&quot;,<br>    &quot;watched&quot;: false,<br>    &quot;watched_location&quot;: &quot;&quot;,<br>    &quot;contacted_health&quot;: &quot;&quot;,<br>    &quot;personid&quot;: &quot;&quot;,<br>    &quot;location&quot;: &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -311,10 +312,10 @@
 
 <h4 id="新建午报打卡任务"><a href="#新建午报打卡任务" class="headerlink" title="新建午报打卡任务"></a>新建午报打卡任务</h4><p>​        <strong>午报只有URL和主体不同</strong></p>
 <p><strong>URL</strong></p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">https://smart.▇▇▇▇.edu.cn/v1/noons/<br></code></pre></td></tr></table></figure>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">https://apii.▇▇▇▇.edu.cn/v1/noons/<br></code></pre></td></tr></table></figure>
 
 <p><strong>主体</strong></p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs http">&#123;<br>    &quot;value&quot;: &quot;36&quot;,<br>    &quot;condition&quot;: &quot;A&quot;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs http">&#123;<br>    &quot;value&quot;: &quot;36.0&quot;,<br>    &quot;condition&quot;: &quot;A&quot;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -369,9 +370,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Tasker/">Tasker</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E7%BD%91%E9%A1%B5/">网页</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Tasker/">Tasker</a>
                     
                       <a class="hover-with-bg" href="/tags/%E6%8A%93%E5%8C%85/">抓包</a>
                     
