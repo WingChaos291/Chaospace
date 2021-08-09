@@ -1,25 +1,10 @@
 <TaskerData sr="" dvi="1" tv="5.12.22">
-	<Profile sr="prof6" ve="2">
-		<cdate>1628215839626</cdate>
-		<edate>1628215898735</edate>
+	<Profile sr="prof5" ve="2">
+		<cdate>1628132448803</cdate>
+		<edate>1628141001067</edate>
 		<flags>10</flags>
-		<id>6</id>
-		<limit>true</limit>
-		<mid0>3</mid0>
-		<Time sr="con0">
-			<fh>6</fh>
-			<fm>0</fm>
-			<th>6</th>
-			<tm>0</tm>
-		</Time>
-	</Profile>
-	<Profile sr="prof7" ve="2">
-		<cdate>1628215874980</cdate>
-		<edate>1628215898945</edate>
-		<flags>10</flags>
-		<id>7</id>
-		<limit>true</limit>
-		<mid0>4</mid0>
+		<id>5</id>
+		<mid0>6</mid0>
 		<Time sr="con0">
 			<fh>12</fh>
 			<fm>0</fm>
@@ -27,54 +12,35 @@
 			<tm>0</tm>
 		</Time>
 	</Profile>
+	<Profile sr="prof7" ve="2">
+		<cdate>1628133003720</cdate>
+		<edate>1628511019657</edate>
+		<flags>10</flags>
+		<id>7</id>
+		<mid0>10</mid0>
+		<Time sr="con0">
+			<fh>6</fh>
+			<fm>0</fm>
+			<th>6</th>
+			<tm>0</tm>
+		</Time>
+	</Profile>
 	<Project sr="proj0" ve="2">
 		<cdate>1620352855732</cdate>
-		<mdate>1628215874980</mdate>
+		<mdate>1628081657253</mdate>
 		<name>主</name>
-		<pids>6,7</pids>
-		<tids>2,3,4</tids>
 	</Project>
-	<Task sr="task2">
-		<cdate>1628213412118</cdate>
-		<edate>1628222977294</edate>
-		<id>2</id>
-		<nme>Token</nme>
-		<Action sr="act0" ve="7">
-			<code>339</code>
-			<Bundle sr="arg0">
-				<Vals sr="val">
-					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%http_cookies
-Cookies
-服务器在响应中以 "Cookie:COOKIE_VALUE" 格式发送的Cookie, 您可以直接在 "HTTP 请求" 操作的 "标头" 字段中使用它&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%http_response_code
-响应代码
-服务器响应的HTTP代码&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%http_response_length
-响应长度
-用bytes表示响应的大小&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;%http_file_output
-文件输出
-即使您指定了文件保存的目录，也将始终包含文件的完整路径&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES4&gt;%http_headers()
-请求头
-服务器在响应中发送的 HTTP 标头，每个标头均采用 "键:值" ('key:value') 格式&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES4&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
-					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
-				</Vals>
-			</Bundle>
-			<Int sr="arg1" val="1"/>
-			<Int sr="arg10" val="0"/>
-			<Int sr="arg11" val="0"/>
-			<Int sr="arg12" val="1"/>
-			<Str sr="arg2" ve="3">https://smart.学校代号.edu.cn/v1/accounts/login/</Str>
-			<Str sr="arg3" ve="3">Content-Type: application/json; charset=utf-8 Accept-Encoding: gzip, deflate, br Connection: keep-alive Accept: application/json</Str>
-			<Str sr="arg4" ve="3"/>
-			<Str sr="arg5" ve="3">{"username":"账号","password":"密码"}</Str>
-			<Str sr="arg6" ve="3"/>
-			<Str sr="arg7" ve="3">Download/</Str>
-			<Int sr="arg8" val="30"/>
-			<Int sr="arg9" val="0"/>
-		</Action>
-	</Task>
-	<Task sr="task3">
-		<cdate>1628215561315</cdate>
-		<edate>1628222988338</edate>
-		<id>3</id>
+	<Project sr="proj1" ve="2">
+		<cdate>1620960200490</cdate>
+		<mdate>1628151360525</mdate>
+		<name>打卡</name>
+		<pids>7,5</pids>
+		<tids>12,10,6</tids>
+	</Project>
+	<Task sr="task10">
+		<cdate>1620811424658</cdate>
+		<edate>1628519120676</edate>
+		<id>10</id>
 		<nme>晨报打卡</nme>
 		<pri>100</pri>
 		<Action sr="act0" ve="7">
@@ -101,22 +67,26 @@ Cookies
 			<Int sr="arg10" val="0"/>
 			<Int sr="arg11" val="0"/>
 			<Int sr="arg12" val="1"/>
-			<Str sr="arg2" ve="3">https://smart.学校代号.edu.cn/v1/temperatures/</Str>
+			<Str sr="arg2" ve="3">https://apii.学校代号.edu.cn/v1/temperatures/</Str>
 			<Str sr="arg3" ve="3">Authorization: JWT 粘贴你的token</Str>
 			<Str sr="arg4" ve="3"/>
 			<Str sr="arg5" ve="3">{
-    "value": "36",
+    "code_color": "A",
     "condition": "A",
+    "contacted_health": "",
+    "family_conditions": "",
+    "high_risk_status": "A",
     "home_condition": "A",
-    "watched": false,
-    "watched_location": "",
+    "is_contacted": false,
     "stayed": false,
     "stayed_contacted": false,
-    "family_conditions": "",
-    "is_contacted": false,
+    "submitted_to_haedu": false,
+    "vaccine_status": "A",
+    "value": "36.0",
+    "watched": false,
+    "watched_location": "",
     "contacted_health": "",
     "personid": "",
-    "notes": "",
     "location": {}
 }</Str>
 			<Str sr="arg6" ve="3"/>
@@ -126,7 +96,7 @@ Cookies
 		</Action>
 		<Action sr="act1" ve="7">
 			<code>523</code>
-			<Str sr="arg0" ve="3">Tasker</Str>
+			<Str sr="arg0" ve="3">自动打卡</Str>
 			<Str sr="arg1" ve="3">打卡成功哦😘</Str>
 			<Str sr="arg10" ve="3"/>
 			<Str sr="arg11" ve="3"/>
@@ -140,11 +110,49 @@ Cookies
 			<Str sr="arg9" ve="3"/>
 		</Action>
 	</Task>
-	<Task sr="task4">
-		<cdate>1628215706705</cdate>
-		<edate>1628222975244</edate>
-		<id>4</id>
+	<Task sr="task12">
+		<cdate>1620812894228</cdate>
+		<edate>1628519066733</edate>
+		<id>12</id>
+		<nme>token</nme>
+		<Action sr="act0" ve="7">
+			<code>339</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%http_cookies
+Cookies
+服务器在响应中以 "Cookie:COOKIE_VALUE" 格式发送的Cookie, 您可以直接在 "HTTP 请求" 操作的 "标头" 字段中使用它&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%http_response_code
+响应代码
+服务器响应的HTTP代码&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%http_response_length
+响应长度
+用bytes表示响应的大小&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;%http_file_output
+文件输出
+即使您指定了文件保存的目录，也将始终包含文件的完整路径&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES3&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES4&gt;%http_headers()
+请求头
+服务器在响应中发送的 HTTP 标头，每个标头均采用 "键:值" ('key:value') 格式&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES4&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+				</Vals>
+			</Bundle>
+			<Int sr="arg1" val="1"/>
+			<Int sr="arg10" val="0"/>
+			<Int sr="arg11" val="0"/>
+			<Int sr="arg12" val="1"/>
+			<Str sr="arg2" ve="3">https://apii.学校代号.edu.cn/v1/accounts/login/</Str>
+			<Str sr="arg3" ve="3">Content-Type: application/json; charset=utf-8 Accept-Encoding: gzip, deflate, br Connection: keep-alive Accept: application/json</Str>
+			<Str sr="arg4" ve="3"/>
+			<Str sr="arg5" ve="3">{"username":"学号","password":"密码"}</Str>
+			<Str sr="arg6" ve="3"/>
+			<Str sr="arg7" ve="3">Download/</Str>
+			<Int sr="arg8" val="30"/>
+			<Int sr="arg9" val="0"/>
+		</Action>
+	</Task>
+	<Task sr="task6">
+		<cdate>1628132914017</cdate>
+		<edate>1628519162429</edate>
+		<id>6</id>
 		<nme>午报打卡</nme>
+		<pri>100</pri>
 		<Action sr="act0" ve="7">
 			<code>339</code>
 			<Bundle sr="arg0">
@@ -169,7 +177,7 @@ Cookies
 			<Int sr="arg10" val="0"/>
 			<Int sr="arg11" val="0"/>
 			<Int sr="arg12" val="1"/>
-			<Str sr="arg2" ve="3">https://smart.学校代号.edu.cn/v1/noons/</Str>
+			<Str sr="arg2" ve="3">https://apii.学校代号.edu.cn/v1/noons/</Str>
 			<Str sr="arg3" ve="3">Authorization: JWT 粘贴你的token</Str>
 			<Str sr="arg4" ve="3"/>
 			<Str sr="arg5" ve="3">{
@@ -183,7 +191,7 @@ Cookies
 		</Action>
 		<Action sr="act1" ve="7">
 			<code>523</code>
-			<Str sr="arg0" ve="3">Tasker</Str>
+			<Str sr="arg0" ve="3">自动打卡</Str>
 			<Str sr="arg1" ve="3">打卡成功哦😘</Str>
 			<Str sr="arg10" ve="3"/>
 			<Str sr="arg11" ve="3"/>
