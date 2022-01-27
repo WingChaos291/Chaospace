@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="利用cqhttp调用接口结合ZeroBot插件搭建QQ机器人">
+  <meta name="author" content="WingChaos">
+  <meta name="keywords" content="">
+  
+  <title>OneBot - Chaospace</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"wingchaos.space","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Chaospace</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="OneBot">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      WingChaos
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-27 12:14" pubdate>
+        2022年1月27日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">OneBot</h1>
+            
+            <div class="markdown-body">
+              <p class="note note-warning">
+    WARNING<br>
+    QQ机器人正被腾讯大力风控，不要使用新注册的账号运行机器人
+</p>
+
+
+
+
+<h2 id="什么是OneBot-标准？"><a href="#什么是OneBot-标准？" class="headerlink" title="什么是OneBot 标准？"></a>什么是OneBot 标准？</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://12.onebot.dev/">OneBot</a>标准是对开发聊天机器人所使用的 API 的一个抽象，是对聊天机器人 API  的通信方式、传输的数据格式和字段等的一个标准化定义。如果将 OneBot 标准类比于 C 语言、ECMAScript、POSIX 标准等，则  OneBot 实现对应 GCC、Chrome V8、Linux 等。</li>
+<li>OneBot 标准由 OneBotRPC 和接口定义两部分组成:<ol>
+<li>OneBotRPC 规定了 OneBot 应用与 OneBot 实现之间通过网络交互所使用的通信方式和数据协议</li>
+<li>接口定义描述了一组标准事件、动作、消息段和它们的扩展规则</li>
+</ol>
+</li>
+</ul>
+<h2 id="听起来好像很复杂？"><a href="#听起来好像很复杂？" class="headerlink" title="听起来好像很复杂？"></a>听起来好像很复杂？</h2><ul>
+<li>事实上，如果单作为使用者，我们不需要了解开发标准</li>
+<li>本次搭建中，我们用到了两个开源项目<ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/Mrs4s/go-cqhttp">Mrs4s/go-cqhttp</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/FloatTech/ZeroBot-Plugin">FloatTech/ZeroBot-Plugin</a></li>
+</ol>
+</li>
+<li>你可以理解为：cqhttp通过 HTTP 或 WebSocket 对 QQ事件进行上报以及接收请求来调用zerobot的接口</li>
+</ul>
+<h2 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h2><ul>
+<li><p>环境：Ubuntu Server 20.04.3 LTS (GNU/Linux 5.4.0-96-generic x86_64)即<code>amd64</code></p>
+<p>（由Releases看来，cqhttp及zerobot支持全平台）如果你想自己构建，则需要安装完整golang环境</p>
+</li>
+</ul>
+<h4 id="1-下载可执行文件"><a href="#1-下载可执行文件" class="headerlink" title="1.下载可执行文件"></a>1.下载可执行文件</h4><ul>
+<li><p>无论在什么系统下，我都建议你做好文件分类</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir onebot<br><span class="hljs-meta">#</span><span class="bash">新建onebot主目录</span><br><br>cd onebot<br><span class="hljs-meta">#</span><span class="bash">进入onebot目录</span><br><br>mkdir cqhttp<br><span class="hljs-meta">#</span><span class="bash">添加go-cqhttp子目录</span><br><br>mkdir zbp<br><span class="hljs-meta">#</span><span class="bash">添加zerobot-plugin子目录</span><br></code></pre></td></tr></table></figure></li>
+<li><p>下载解压可执行文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">去go-cqhttp的Releases复制符合系统版本的下载链接</span><br><span class="hljs-meta">#</span><span class="bash">在cqhttp文件夹下</span><br>wget https://github.com/Mrs4s/go-cqhttp/releases/download/v1.0.0-beta8-fix2/go-cqhttp_linux_amd64.tar.gz<br>tar -zxvf go-cqhttp_linux_amd64.tar.gz<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">zerobot-plugin</span><br>wget https://github.com/FloatTech/ZeroBot-Plugin/releases/download/v1.2.4-fix1/zbp_linux_amd64.tar.gz<br>tar -zxvf zbp_linux_amd64.tar.gz<br></code></pre></td></tr></table></figure></li>
+<li><p>目录结构如下，如果你觉得文件解压完的文件很多，可以删除<code>README.md</code>，<code>LICENSE</code>和压缩包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">root@ubuntu:/home# tree onebot/<br>onebot/<br>├── cqhttp<br>│   ├── go-cqhttp<br>│   ├── go-cqhttp_linux_amd64.tar.gz<br>│   ├── LICENSE<br>│   └── README.md<br>└── zbp<br>    ├── LICENSE<br>    ├── README.md<br>    ├── zbp<br>    └── zbp_linux_amd64.tar.gz<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-配置文件"><a href="#2-配置文件" class="headerlink" title="2.配置文件"></a>2.配置文件</h4><ul>
+<li>进入cqhttp目录运行可执行文件<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">root@ubuntu:/home/onebot/cqhttp# ./go-cqhttp<br>未找到配置文件，正在为您生成配置文件中！<br>请选择你需要的通信方式:<br><span class="hljs-meta">&gt;</span><span class="bash"> 0: HTTP通信</span><br><span class="hljs-meta">&gt;</span><span class="bash"> 1: 云函数服务</span><br><span class="hljs-meta">&gt;</span><span class="bash"> 2: 正向 Websocket 通信</span><br><span class="hljs-meta">&gt;</span><span class="bash"> 3: 反向 Websocket 通信</span><br><span class="hljs-meta">&gt;</span><span class="bash"> 4: pprof 性能分析服务器</span><br>请输入你需要的编号(0-9)，可输入多个，同一编号也可输入多个(如: 233)<br>您的选择是:2<br>默认配置文件已生成，请修改 config.yml 后重新启动!<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>目录中新生成了配置文件<code>config.yml</code></p>
+</li>
+<li><p>修改配置(正常情况下只需要修改uin，即QQ账号)</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">root@ubuntu:/home/onebot/cqhttp#</span> <span class="hljs-string">vim</span> <span class="hljs-string">config.yml</span><br><br><span class="hljs-comment"># go-cqhttp 默认配置文件</span><br>  <br><span class="hljs-attr">account:</span> <span class="hljs-comment"># 账号相关</span><br>  <span class="hljs-attr">uin:</span> <span class="hljs-number">12345678</span> <span class="hljs-comment"># QQ账号</span><br>  <span class="hljs-attr">password:</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-comment"># 密码为空时使用扫码登录</span><br>  <span class="hljs-attr">encrypt:</span> <span class="hljs-literal">false</span>  <span class="hljs-comment"># 是否开启密码加密</span><br>  <span class="hljs-attr">status:</span> <span class="hljs-number">0</span>      <span class="hljs-comment"># 在线状态 请参考 https://docs.go-cqhttp.org/guide/config.html#在线状态</span><br>  <span class="hljs-attr">relogin:</span> <span class="hljs-comment"># 重连设置</span><br>    <span class="hljs-attr">delay:</span> <span class="hljs-number">3</span>   <span class="hljs-comment"># 首次重连延迟, 单位秒</span><br>    <span class="hljs-attr">interval:</span> <span class="hljs-number">3</span>   <span class="hljs-comment"># 重连间隔</span><br>    <span class="hljs-attr">max-times:</span> <span class="hljs-number">0</span>  <span class="hljs-comment"># 最大重连次数, 0为无限制</span><br><span class="hljs-string">...</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="3-运行程序"><a href="#3-运行程序" class="headerlink" title="3.运行程序"></a>3.运行程序</h4><ul>
+<li><p>为保证断开终端后程序仍能运行，在Linux中要用到<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-screen.html">screen</a>命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">只需要用到这几条:</span><br><br>screen -S 名称<br><span class="hljs-meta">#</span><span class="bash">新建窗口并进入，注意大写S</span><br><br>screen -ls<br><span class="hljs-meta">#</span><span class="bash">列出所有正在运行的窗口</span><br><br>screen -r 名称<br><span class="hljs-meta">#</span><span class="bash">恢复先前名为<span class="hljs-string">&quot;名称&quot;</span>的窗口</span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">在窗口中运行好任务后，按<span class="hljs-string">&#x27;CTRL+A+D&#x27;</span>让窗口保持后台运行</span><br><span class="hljs-meta">#</span><span class="bash">在一个窗口中按<span class="hljs-string">&#x27;CTRL+D&#x27;</span>销毁窗口</span><br></code></pre></td></tr></table></figure></li>
+<li><p>新建名为cqhttp的窗口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">root@ubuntu:~# screen -S cqhttp<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">跳转至新窗口</span><br><span class="hljs-meta">#</span><span class="bash">进入cqhttp目录运行程序./gocqhttp</span><br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">扫码登陆后按CTRL+A+D后台运行</span><br></code></pre></td></tr></table></figure></li>
+<li><p>zerobot同理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">进入zerobot目录</span><br><span class="hljs-meta">#</span><span class="bash">zerobot的可执行文件为zbp</span><br><span class="hljs-meta">#</span><span class="bash">执行命令为./zbp</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>zbp运行指令拥有可选参数：./zbp [-h] [-t token] [-u url] [-n nickname] [-p prefix] [-d|w] [-g 监听地址:端口] [qq1 qq2 qq3 …] [&amp;]<ol>
+<li><strong>-h</strong>: 显示帮助</li>
+<li><strong>-t token</strong>: 设置<code>AccessToken</code>，默认为空</li>
+<li><strong>-u url</strong>: 设置<code>Url</code>，默认为<code>ws://127.0.0.1:6700</code></li>
+<li><strong>-n nickname</strong>: 设置默认昵称，默认为<code>椛椛</code></li>
+<li><strong>-p prefix</strong>: 设置命令前缀，默认为<code>/</code></li>
+<li><strong>-d|w</strong>: 开启 debug | warning 级别及以上日志输出</li>
+<li><strong>-g 监听地址:端口</strong>: 在 http://监听地址:端口 上开启 <a target="_blank" rel="noopener" href="https://github.com/FloatTech/bot-manager">webgui</a></li>
+<li><strong>qqs</strong>: superusers 的 qq 号</li>
+<li><strong>&amp;</strong>: 驻留在后台，必须放在最后，仅<code>Linux</code>下有效</li>
+</ol>
+</li>
+<li>建议添加自己的主QQ作为zerobot的管理员</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-成功部署"><a href="#4-成功部署" class="headerlink" title="4. 成功部署"></a>4. 成功部署</h4><ul>
+<li><p>回到最初的终端，输入<code>screen -ls</code>即可看到当前正在运行的后台窗口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">root@ubuntu:~# screen -ls<br>There are screens on:<br>	4339.zbp	(01/27/2022 05:59:05 AM)	(Detached)<br>	4205.cqhttp	(01/27/2022 05:52:56 AM)	(Detached)<br>2 Sockets in /run/screen/S-root.<br></code></pre></td></tr></table></figure></li>
+<li><p>用zerobot的管理员账号向机器人账号私聊发送：<code>/服务详情</code>即可查看具体用法</p>
+</li>
+</ul>
+<h4 id="5-进阶操作"><a href="#5-进阶操作" class="headerlink" title="5.进阶操作"></a>5.进阶操作</h4><ul>
+<li><p>在查看zerobot官方文档时，发现了一种在线编译的方式</p>
+<ol>
+<li>点击项目右上角 Fork ，并转跳到自己 Fork 的仓库</li>
+<li>点击仓库上方的 Actions 按钮，确认使用 Actions</li>
+<li>编辑 main.go 文件，内容按需修改</li>
+<li>前往 Release 页面发布一个 Release，<code>tag</code>形如<code>v1.2.3</code>，以触发稳定版编译流程</li>
+<li>点击 Actions 按钮，等待编译完成，回到 Release 页面下载编译好的文件</li>
+<li>运行 OneBot 框架，并同时运行本插件</li>
+</ol>
+</li>
+<li><p>go-cqhttp的启动命令也可以带参数</p>
+<ul>
+<li><p>快速启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./go-cqhttp faststart<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>关于账号被风控</p>
+<p>建议查看此<a target="_blank" rel="noopener" href="https://github.com/Mrs4s/go-cqhttp/issues/1320">issue</a></p>
+</li>
+</ul>
+<h2 id="完成！"><a href="#完成！" class="headerlink" title="完成！"></a>完成！</h2><ul>
+<li>在Linux环境下搭建，需要一定的Shell命令操作基础知识</li>
+<li>如果你实在是懒，也可以直接去<a target="_blank" rel="noopener" href="https://github.com/FloatTech/gocqzbp">FloatTech/gocqzbp</a>下载可执行文件，它是go-cqhttp与ZeroBot-Plugin的合体    <ul>
+<li>文档请参考<a target="_blank" rel="noopener" href="https://github.com/Mrs4s/go-cqhttp">go-cqhttp</a>，默认开启<a target="_blank" rel="noopener" href="https://github.com/FloatTech/ZeroBot-Plugin">ZeroBot-Plugin</a>，无需任何额外操作即可使用。</li>
+<li>除与<a target="_blank" rel="noopener" href="https://github.com/Mrs4s/go-cqhttp">go-cqhttp</a>一致的参数外，还可以附加任意个数的qq号作为管理员<code>SuperUser</code></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/">机器人</a>
+                    
+                      <a class="hover-with-bg" href="/tags/QQ/">QQ</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    除特别声明外，本博客所有文章均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/03/Tasker-DataProcessing/">
+                        <span class="hidden-mobile">Tasker-DataProcessing</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@0.16.2/dist/Waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://comments-api-a22k6geiv-wingchaos291.vercel.app/","placeholder":"看完了吗，写点什么吧？","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-CN","highlight":true,"avatarCDN":"","avatarForce":false,"requiredFields":[],"emojiCDN":"https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq","emojiMaps":null,"anonymous":null},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        new Waline(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-code"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> </div> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
