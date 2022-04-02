@@ -4,7 +4,28 @@
   
   
   <entry>
-    <title>OneBot</title>
+    <title>校园网优化-第一篇-了解校园网</title>
+    <link href="/2022/04/02/school-net-1/"/>
+    <url>/2022/04/02/school-net-1/</url>
+    
+    <content type="html"><![CDATA[<h2 id="一、你需要了解"><a href="#一、你需要了解" class="headerlink" title="一、你需要了解"></a>一、你需要了解</h2><ul><li>校园网的工作原理<ol><li>如何验证用户身份</li><li><strong>怎么判断终端是手机还是PC</strong></li><li>如何给用户提供网络</li></ol></li></ul><h2 id="二、如何验证用户身份"><a href="#二、如何验证用户身份" class="headerlink" title="二、如何验证用户身份"></a>二、如何验证用户身份</h2><ul><li><p>网上有很多介绍如何<a href="https://search.bilibili.com/all?keyword=%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E6%A0%A1%E5%9B%AD%E7%BD%91">自动登录校园网</a>的，在此只随口提一句</p><ol><li><p>如果你之前看过我关于Tasker的教程，那就应该了解一点HttpRequest的理论</p></li><li><p>验证，顾名思义就是向服务器发送能证明你身份的数据</p></li><li><p>向服务器发送数据是不难的，网上的各种方法都是在教大家如何获取到这段数据</p><p>这里是用FireFox自带的网络抓包功能获取到的Http请求</p><p><img src="/img/school-net-1/login.jpg"></p></li></ol></li><li><p>请求过程非常草率2333，在GET语句中-账号密码全部明文上传</p></li><li><p>想要自动登录，只要在连上校园网的一刻，自动向服务器发送这条GET请求即可</p></li></ul><h2 id="三、服务端怎么判断终端是手机还是PC"><a href="#三、服务端怎么判断终端是手机还是PC" class="headerlink" title="三、服务端怎么判断终端是手机还是PC"></a>三、服务端怎么判断终端是手机还是PC</h2><ul><li><p>又要提到上文中的GET请求了，细看GET请求中，有一条<code>User-Agent</code>，也就是大家在使用浏览器时可能见过的-UA选项</p></li><li><p>UA选项能让手机从移动端的页面转为桌面端，就是让服务器认为你是在用电脑浏览器访问，因而变更向你展示页面的格式</p></li><li><p>所以，通过修改UA我们就能达到一个账号同时支持两台PC或两台移动端访问</p></li><li><p>（博主的校园网只支持最多一台PC和一台移动设备访问）</p><p><img src="/img/school-net-1/useragent.jpg"></p></li></ul><h2 id="四、如何给用户提供网络"><a href="#四、如何给用户提供网络" class="headerlink" title="四、如何给用户提供网络"></a>四、如何给用户提供网络</h2><ul><li>校园网服务器在用户通过验证后向用户分配一个IP地址</li><li>这个IP是不固定的，由校园网当前的使用人数决定</li><li>根据GET请求中@符号后的代码来判断你的账号是哪家运营商</li><li>验证过后就为你接入对应的网络线路</li></ul><h2 id="五、待续"><a href="#五、待续" class="headerlink" title="五、待续"></a>五、待续</h2><ul><li>在之后的篇幅中会向大家介绍各种进阶调教方案<ol><li>单账号全寝室上网</li><li>多账号速度叠加上网</li><li>搭建寝室专用服务器</li><li>接入NAS设备，为寝室提供云存储方案</li><li>利用旁路由方案提升上网速度，屏蔽广告，<del>走向世界</del></li></ol></li><li>有任何问题或个人见解，请于评论区留言，我会收到邮件并回复你</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>硬件</tag>
+      
+      <tag>网络</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>机器人框架</title>
     <link href="/2022/01/27/OneBot/"/>
     <url>/2022/01/27/OneBot/</url>
     
@@ -27,7 +48,7 @@
   
   
   <entry>
-    <title>Tasker-DataProcessing</title>
+    <title>Tasker-第二章-数据处理</title>
     <link href="/2022/01/03/Tasker-DataProcessing/"/>
     <url>/2022/01/03/Tasker-DataProcessing/</url>
     
@@ -41,9 +62,9 @@
       
       <tag>网页</tag>
       
-      <tag>数据处理</tag>
-      
       <tag>自动化</tag>
+      
+      <tag>数据处理</tag>
       
     </tags>
     
@@ -52,7 +73,7 @@
   
   
   <entry>
-    <title>My-Laptop</title>
+    <title>了解你的电脑</title>
     <link href="/2021/09/08/My-Laptop/"/>
     <url>/2021/09/08/My-Laptop/</url>
     
@@ -73,7 +94,7 @@
   
   
   <entry>
-    <title>Tasker-HttpRequest</title>
+    <title>Tasker-第一篇-Http请求</title>
     <link href="/2021/07/27/Tasker-HttpRequest/"/>
     <url>/2021/07/27/Tasker-HttpRequest/</url>
     
@@ -87,30 +108,9 @@
       
       <tag>网页</tag>
       
-      <tag>自动化</tag>
-      
       <tag>抓包</tag>
       
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Annoying-QNDXX</title>
-    <link href="/2021/07/26/annoying-QNDXX/"/>
-    <url>/2021/07/26/annoying-QNDXX/</url>
-    
-    <content type="html"><![CDATA[<p class="note note-warning">    WARNING<br>    在学习本方法前你应当清楚，此行为违背了青年大学习网上主题团课的最初目的，可能造成不好的后果！</p><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>​    <strong>利用微信自带的腾讯<code>X5内核</code>，在网页视频播放时进行调试，达到更改视频播放时长的目的。</strong>  </p><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>​                <strong>适用于Android，如果你是ios用户，请直接在任务栏中拖动视频进度条</strong></p><h3 id="一、确认内核"><a href="#一、确认内核" class="headerlink" title="一、确认内核"></a>一、确认内核</h3><p>​    将以下网址发送到任意微信联系人（建议发给自己，避免对他人造成困扰）  </p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">debugmm.qq.com/<span class="hljs-string">?f</span>orcex5=<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure><p>​    点开查看结果是否为”force use x5 switch is on”  </p><p><img alt="" src="/img/annoying-QNDXX/ensurex5.jpg" width=40%><img alt="" src="/img/annoying-QNDXX/x5ison.jpg" width=40%></p><h3 id="二、开启x5内核调试"><a href="#二、开启x5内核调试" class="headerlink" title="二、开启x5内核调试"></a>二、开启x5内核调试</h3><p>​    将以下网址发送……  </p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>debugx5.qq.com<br></code></pre></td></tr></table></figure><ol><li>单击网址进入<code>调试页面</code></li><li>单击页面上方<code>信息</code></li><li>勾选”打开<code>vConsole</code>调试功能”</li><li>刷新页面即可看到浮动的<code>vConsole</code>调试按钮</li></ol><p><img alt="" src="/img/annoying-QNDXX/openVconsole1.jpg" width=40%><img alt="" src="/img/annoying-QNDXX/openVconsole2.jpg" width=40%><img alt="" src="/img/annoying-QNDXX/openVconsole3.jpg" width=40%></p><h3 id="三、开始-学习"><a href="#三、开始-学习" class="headerlink" title="三、开始 学习"></a>三、开始 <del>学习</del></h3><p>​    复制以下指令至剪切板</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">document.getElementById(<span class="hljs-string">&#x27;Bvideo&#x27;</span>).<span class="hljs-attribute">currentTime</span>=3600;<br></code></pre></td></tr></table></figure><p>​    #获取并更改当前页面视频播放时间</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">__vconsole.style.display</span>=<span class="hljs-string">&quot;none&quot;</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure><p>​    #隐藏<code>vConsole调试按钮</code>（用于截图，刷新页面后恢复显示）</p><ol><li><p>转至开始学习页面</p></li><li><p>点击<code>开始学习</code></p></li><li><p>打开<code>调试窗口</code></p></li><li><p>粘贴<code>修改指令</code>执行</p></li><li><p>答完所有题目</p></li></ol><p><strong>答完所有题目后，大概率出现视频仍在播放的情况，只需重新执行指令即可跳过</strong></p><p><strong>执行隐藏指令后截图，完成本次青年大学习</strong></p><p><img alt="" src="/img/annoying-QNDXX/begin1.jpg" width=40%><img alt="" src="/img/annoying-QNDXX/begin2.jpg" width=40%><img alt="" src="/img/annoying-QNDXX/end.jpg" width=40%></p><h3 id="四、补充内容"><a href="#四、补充内容" class="headerlink" title="四、补充内容"></a>四、补充内容</h3><ol><li>本方法来源于网络，本人仅将代码合并整理，并提供截图时调试按钮的隐藏思路。</li><li>使用本方法造成学校处分后果的，由使用者自行承担责任。</li><li>理论上：本方法完整的看（刷）完了视频。</li><li>图片排版太扯了，由于受各种不确定因素影响，不是我的锅🙄</li></ol>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>网页</tag>
-      
-      <tag>青年大学习</tag>
+      <tag>自动化</tag>
       
     </tags>
     
@@ -119,7 +119,7 @@
   
   
   <entry>
-    <title>Learn-Hexo</title>
+    <title>Hexo学习内容</title>
     <link href="/2021/07/26/learn-hexo/"/>
     <url>/2021/07/26/learn-hexo/</url>
     
